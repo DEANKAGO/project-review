@@ -14,4 +14,8 @@ class Profile(models.Model):
   contact = models.CharField(null=True, blank=True, max_length=180)
 
 
-
+class Project(models.Model):
+  title = models.CharField(null=True, blank=True, max_length=180)
+  imagee = models.ImageField(null=True, blank=True)
+  description = models.TextField(null=True, blank=True)
+  link = models.URLField(null=True, blank=True)
