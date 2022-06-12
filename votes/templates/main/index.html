@@ -13,39 +13,39 @@
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {% if images|length > 0 %} {% for image in images %}
+          {% if projects|length > 0 %} {% for project in projects %}
           <div class="col">
             <div class="card shadow-sm">
-              <img src="{{image.image.url}}" alt="{{image.text}}" />
+              <img src="{{project.image.url}}" alt="" />
 
               <div class="card-body">
                 <p class="card-text">
-                  {{image.description}} . . .
-                  <a
-                    href="{% url 'image-details' slug1=category.slug slug2=image.slug %}"
-                    >read more</a
-                  >
+                  {{project.description}} . . .
+                  <!-- <a
+                    href="{% url '' slug1=category.slug slug2=image.slug %}"
+                    >Review</a
+                  > -->
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a
-                      href="{% url 'image-details' slug1=category.slug slug2=image.slug %}"
+                    <!-- <a
+                      href="{% url '' slug1=category.slug slug2=image.slug %}"
                       ><button
                         type="button"
                         class="btn btn-sm btn-outline-secondary"
                       >
                         Image Details
                       </button></a
-                    >
+                    > -->
                     <button
                       type="button"
                       class="btn btn-sm btn-outline-secondary copy-btn"
-                      data-landImage.url="{{image.landImage.url}}"
+                      data-landImage.url="{{image.image.url}}"
                     >
                       Copy Link
                     </button>
                   </div>
-                  <small class="text-muted">{{image.date_created|date}}</small>
+                  <small class="text-muted">{{project.date_created|date}}</small>
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@
 
   <footer class="text-muted py-5">
     <div class="container">
-      <!-- <p>Template adapted from Bootstrap 5 by <a href="#">DeanKa Images</a>.</p> -->
+      <!-- <p>Template adapted from Bootstrap 5 by <a href="#">Martin</a>.</p> -->
     </div>
   </footer>
 
