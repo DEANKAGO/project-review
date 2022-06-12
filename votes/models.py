@@ -46,6 +46,28 @@ class Project(models.Model):
 
   profile = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
 
+  uniqueId = models.CharField(null=True, blank=True, max_length=100)
+  slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+  date_created = models.DateTimeField(blank=True, null=True)
+  last_updated = models.DateTimeField(blank=True, null=True)
+
+  def __str__(self):
+    return '{} {}'.format(self.profile.title, self.uniqueId)
+
+  def get_absolute_url(self):
+    return reverse('project-detail', kwargs={'slug': self.slug})
+
+  def save(self, *args, **kwargs):
+    if self.date_created is None:
+      self.date_created = timezone.localtime(timezone.now())
+    if self.uniqueId is None:
+      self.uniqueId = str(uuid4()).split('-')[4]
+      self.slug = slugify('{} {}'.format(self.profile.title, self.uniqueId))
+
+    self.slug = slugify('{} {}'.format(self.profile.title, self.uniqueId))
+    self.last_updated = timezone.localtime(timezone.now())
+    super(Project, self).save(*args, **kwargs)
+
 
 
 class rating(models.Model):
