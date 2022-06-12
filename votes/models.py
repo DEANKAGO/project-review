@@ -9,8 +9,8 @@ from uuid import uuid4
 # Create your models here.
 
 class Profile(models.Model):
-  name = models.TextField(null=True, blank=True)
-  prof_image = models.ImageField(null=True, blank=True)
+  title = models.TextField(null=True, blank=True)
+  prof_image = models.ImageField(null=True, blank=True, upload_to='media/')
   user_bio = models.TextField(blank=True, null=True)
   projects = models.CharField(null=True, blank=True, max_length=180)
   contact = models.CharField(null=True, blank=True, max_length=180)
@@ -40,7 +40,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
   title = models.CharField(null=True, blank=True, max_length=180)
-  image = models.ImageField(null=True, blank=True)
+  image = models.ImageField(null=True, blank=True, upload_to='media/')
   description = models.TextField(null=True, blank=True)
   link = models.URLField(null=True, blank=True)
 
@@ -74,6 +74,8 @@ class Rating(models.Model):
   design = models.IntegerField(null=True, blank=True)
   usability = models.IntegerField(null=True, blank=True)
   content = models.IntegerField(null=True, blank=True)
+  score = models.IntegerField(default=0)
+
 
   project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.CASCADE)
 
