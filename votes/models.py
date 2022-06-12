@@ -38,6 +38,11 @@ class Profile(models.Model):
     self.last_updated = timezone.localtime(timezone.now())
     super(Profile, self).save(*args, **kwargs)
 
+  @classmethod
+  def searching_profile(cls, searched_item):
+    profile = cls.objects.filter(title__icontains = searched_item)
+    return profile
+
 
 class Project(models.Model):
   title = models.CharField(null=True, blank=True, max_length=180)

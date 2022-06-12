@@ -15,9 +15,9 @@ def rating(request, slug):
 
 def search_profile(request):
   if 'profile' in request.GET and request.GET['profile']:
-    searched_profile = request.GET['profile']
-    profiles = Profile.searching_profile(searched_profile)
-    term = f"{searched_profile}"
+    searched_item = request.GET['profile']
+    profiles = Profile.searching_profile(searched_item)
+    term = f"{searched_item}"
     return render(request, 'main/search.html', locals())
   else:
     term = "kindly input a profile name"
