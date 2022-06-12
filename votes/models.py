@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from uuid import uuid4
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 
 
 
@@ -71,10 +72,9 @@ class Project(models.Model):
 
 
 class Rating(models.Model):
-  design = models.IntegerField(null=True, blank=True)
-  usability = models.IntegerField(null=True, blank=True)
-  content = models.IntegerField(null=True, blank=True)
-  score = models.IntegerField(default=0)
+  design = models.IntegerField(null=True, blank=True, default=0, validators=[MaxLengthValidator(10), MinLengthValidator(0)])
+  usability = models.IntegerField(null=True, blank=True, default=0)
+  content = models.IntegerField(null=True, blank=True, default=0)
 
 
   project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.CASCADE)
