@@ -73,7 +73,7 @@ class Project(models.Model):
 
 class Rating(models.Model):
   design = models.IntegerField(null=True, blank=True, default=0, validators=[MaxLengthValidator(10), MinLengthValidator(0)])
-  usability = models.IntegerField(null=True, blank=True, default=0)
+  usability = models.IntegerField(null=True, blank=True, default=0, validators=[MaxLengthValidator(10), MinLengthValidator(0)])
   content = models.IntegerField(null=True, blank=True, default=0)
 
 
