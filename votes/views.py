@@ -3,7 +3,7 @@ from .models import *
 # from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-# from .forms import profileForm,UserUpdateForm,RegistrationForm,projectForm,UpdateUserProfileForm,RateForm
+from .forms import *
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -48,4 +48,10 @@ def addProject(request):
     else:
         form = projectForm()
     return render(request,'newProject.html',{'form':form})  
+
+
+
+def profile(request,id):
+    prof = Profile.objects.get(user = id)
+    return render(request,'profile.html',{"profile":prof})
 

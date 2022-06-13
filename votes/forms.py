@@ -5,7 +5,7 @@ from .models import *
 
 
 
-class projectForm(forms.ModelForm):
-    class Meta:
-        model = Projects
-        fields = ['title','description','projectscreenshot','projecturl']
+class projectForm(forms.ModelForm):  
+  class Meta:
+    model = Projects
+    fields = ['title','description','projects_screenshot','project_url']
