@@ -75,3 +75,8 @@ def editprofile(request):
     }
     return render(request, 'editprofile.html', params)
 
+
+def projects(request,id):
+    proj = Projects.objects.get(id = id)
+    return render(request,'readmore.html',{"projects":proj})
+
