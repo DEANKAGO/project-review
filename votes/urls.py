@@ -8,5 +8,6 @@ urlpatterns = [
   path('newproject/',views.addProject,name = 'project'),
   path('profile/<id>/',views.profile,name = 'profile'),
   path('editprofile/',views.editprofile,name = 'editprofile'), 
+  path('projects/<id>/',views.projects,name = 'projects'),
 
 ]
