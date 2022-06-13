@@ -12,6 +12,10 @@ urlpatterns = [
   path('profile/<id>/',views.profile,name = 'profile'),
   path('editprofile/',views.editprofile,name = 'editprofile'), 
   path('projects/<id>/',views.projects,name = 'projects'),
-  path('rate/<id>/',views.rate,name = 'rate')
+  path('rate/<id>/',views.rate,name = 'rate'),
+  path('api/profile',views.ProfileList.as_view()),
+  path('api/projects',views.ProjectList.as_view()),
+  path(r'ratings/', include('star_ratings.urls', namespace='ratings')),
+
 
 ]

@@ -15,6 +15,7 @@ import os
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from decouple import config,Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'votes',
     'cloudinary',
+    'star_ratings',
+    'rest_framework',
+    'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,10 +139,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dv0ldlv3d',
-    'API_KEY': '578664842593642',
-    'API_SECRET': '-W9_rN8EdmCkSiOKNZYAMP5HZlg'
-}
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+cloudinary.config( 
+  cloud_name = "dv0ldlv3d", 
+  api_key = "578664842593642", 
+  api_secret = "-W9_rN8EdmCkSiOKNZYAMP5HZlg" 
+)
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

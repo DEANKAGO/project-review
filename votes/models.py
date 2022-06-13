@@ -8,9 +8,9 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Profile(models.Model):
+  photo = CloudinaryField('media', null=True)
+  Bio = models.CharField(max_length=30)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
-  photo = CloudinaryField('media')
-  Bio = models.CharField(null=True, max_length=30)
   date_created = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
@@ -31,7 +31,7 @@ class Profile(models.Model):
 class Projects(models.Model):
   title = models.CharField(max_length=30)
   description = models.TextField(max_length=250, null=True, blank=True)
-  projects_screenshot = CloudinaryField('media', blank=True, null=True)
+  projects_screenshot = CloudinaryField('media')
   project_url = models.URLField(max_length=250)
   user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='', related_name='author')
   date_created = models.DateTimeField(auto_now_add=True)
