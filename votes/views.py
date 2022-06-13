@@ -55,3 +55,23 @@ def profile(request,id):
     prof = Profile.objects.get(user = id)
     return render(request,'profile.html',{"profile":prof})
 
+
+
+def editprofile(request):
+    user= request.user
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and prof_form.is_valid():
+            user_form.save()
+            prof_form.save()
+            return redirect('profile', user.id)
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
+    params = {
+        'user_form': user_form,
+        'prof_form': prof_form
+    }
+    return render(request, 'editprofile.html', params)
+

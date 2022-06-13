@@ -9,3 +9,9 @@ class projectForm(forms.ModelForm):
   class Meta:
     model = Projects
     fields = ['title','description','projects_screenshot','project_url']
+
+
+class profileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [ 'photo', 'Bio']
