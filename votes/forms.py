@@ -29,3 +29,9 @@ class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['Bio', 'photo']
+
+
+class RateForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['text','design','usability','content']
