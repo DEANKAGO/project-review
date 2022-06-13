@@ -1,24 +1,35 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+# from __future__ import unicode_literals
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+# from .forms import profileForm,UserUpdateForm,RegistrationForm,projectForm,UpdateUserProfileForm,RateForm
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.urls import reverse
+from rest_framework.response import Response
+from rest_framework.views import APIView
+# from .serializer import ProfileSerializer,ProjectSerializer
 
 # Create your views here.
 
-def homepage(request):
-  return render(request, 'main/index.html')
+def index(request):
+  projects = Projects.objects.all()
+  return render(request, 'main/index.html', {'projects': projects})
 
 
-def rating(request, slug):
-  profile = Profile.objects.get(slug=slug)
-  projects = Project.objects.filter(profile=profile).order_by('-date_created')
-  return render(request, 'main/rating.html', locals())
+def searchprofile(request):
+    if 'searchUser' in request.GET and request.GET['searchUser']:
+        name = request.GET.get("searchUser")
+        searchResults = Projects.search_projects(name)
+        message = f'name'
+        params = {
+            'results': searchResults,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any profile"
+    return render(request, 'search.html', {'message': message})
 
-
-def search_profile(request):
-  if 'profile' in request.GET and request.GET['profile']:
-    searched_item = request.GET['profile']
-    profiles = Profile.searching_profile(searched_item)
-    term = f"{searched_item}"
-    return render(request, 'main/search.html', locals())
-  else:
-    term = "kindly input a profile name"
-    return render(request, 'main/search.html', locals())
