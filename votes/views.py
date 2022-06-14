@@ -56,7 +56,7 @@ def searchprofile(request):
 
 
 
-# @login_required(login_url='login') 
+@login_required(login_url='login') 
 def addProject(request):
     current_user = request.user
     user_profile = Profile.objects.get(user = current_user)
