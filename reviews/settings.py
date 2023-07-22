@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-@%*+)u28a#y+1f$6#idwirbg&xyzt#f+5hjjsqtn$kn39o^_n^
 DATABASE_URL = 'postgresql://postgres:buTLv7NQzEMER4Ly4upL@containers-us-west-149.railway.app:7955/railway'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

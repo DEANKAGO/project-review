@@ -4,8 +4,7 @@
  </p>
 ##### By Martin Kago
 
-### project-review link : https://martinreviews.herokuapp.com/
-
+### project-review link : https://project-review.up.railway.app/
 ## Table of Content
 
 - [Description](#description)
