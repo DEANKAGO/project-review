@@ -14,9 +14,9 @@
       <div class="row">
           {%for proj in projects%}
           <div class="col-md-3">
-              <div class="card">
+              <div class="card mb-4">
                   <div class="view view-cascade overlay" style="max-height: 23vh">
-                      <img src="{{proj.projects_screenshot.url}}" class="img-fluid" alt="">
+                      <img src="{{proj.projects_screenshot.url}}" class="card-img-top img-fluid" alt="">
                       <a href="projects/{{proj.id}}">
                           <div class="mask rgba-white-slight"></div>
                       </a>
