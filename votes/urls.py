@@ -15,7 +15,7 @@ urlpatterns = [
   path('rate/<id>/',views.rate,name = 'rate'),
   path('api/profile',views.ProfileList.as_view()),
   path('api/projects',views.ProjectList.as_view()),
-  path(r'ratings/', include('star_ratings.urls', namespace='ratings')),
+  path('ratings/', include('star_ratings.urls', namespace='ratings')),
 
 
 ]

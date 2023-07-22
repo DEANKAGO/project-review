@@ -2,10 +2,10 @@
 {% block content %}
 {{block.super}}
 
-    <div class="content-section">
+    <div class="content-section ml-5 mt-3 bg">
         <h2>You have been logged out</h2>
             <small class="text-muted">
-                <a class="ml-2" href="{% url 'login' %}">Log In</a>
+                <a class="ml-2 btn btn-primary btn-sm" href="{% url 'login' %}">Log In</a>
             </small>
         </div>
     </div>

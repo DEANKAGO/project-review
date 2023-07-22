@@ -10,6 +10,7 @@ from django.urls import reverse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
+from django.http import Http404
 
 # Create your views here.
 
@@ -73,8 +74,12 @@ def addProject(request):
 
 
 
+@login_required(login_url='login') 
 def profile(request,id):
-    prof = Profile.objects.get(user = id)
+    try:
+        prof = Profile.objects.get(user = id)
+    except Profile.DoesNotExist:
+        raise Http404("No MyModel matches the given query.")
     return render(request,'main/profile.html',{"profile":prof})
 
 

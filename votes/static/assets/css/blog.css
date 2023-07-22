@@ -101,3 +101,9 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+/* .content-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+} */

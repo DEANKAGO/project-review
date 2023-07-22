@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -27,10 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@%*+)u28a#y+1f$6#idwirbg&xyzt#f+5hjjsqtn$kn39o^_n^'
 
+DATABASE_URL = 'postgresql://postgres:buTLv7NQzEMER4Ly4upL@containers-us-west-149.railway.app:7955/railway'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,18 +84,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'reviews.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'review',
-        'USER': 'postgres',
-        'PASSWORD': 'qwerty',
-        'HOST': 'localhost',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'review',
+#         'USER': 'postgres',
+#         'PASSWORD': 'qwerty',
+#         'HOST': 'localhost',
 
-    }
+#     }
+# }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=1800
+    )
 }
 
 
@@ -131,6 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

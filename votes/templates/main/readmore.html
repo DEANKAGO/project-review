@@ -30,8 +30,9 @@
               </div>
           </div>
       </div>
-      <iv class="ratings">
-          <h3 class="pt-3 h2">Rate</h3>
+      <div class="ratings">
+          <h3 class="pt-3 h2">Ratings:</h3>
+          <br>
           <div class="row">
               <div class="col-sm">
                   <h4>Usability</h4>
@@ -46,8 +47,8 @@
                   {% ratings projects %}
               </div>
           </div>
-          <a href="{% url 'rate' projects.id %}" class="h1">Review</a>
-  </div>
+          <!-- <a href="{% url 'rate' projects.id %}" class="h1">Review</a> -->
+    </div>
   <div>
       {%endblock%}
-  </div>
+</div>

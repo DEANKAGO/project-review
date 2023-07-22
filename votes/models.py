@@ -2,13 +2,17 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
+
+
 
 
 
 # Create your models here.
 
 class Profile(models.Model):
-  photo = CloudinaryField('media', null=True)
+  photo = CloudinaryField('media')
   Bio = models.CharField(max_length=30)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   date_created = models.DateTimeField(auto_now_add=True)
@@ -33,7 +37,7 @@ class Projects(models.Model):
   description = models.TextField(max_length=250, null=True, blank=True)
   projects_screenshot = CloudinaryField('media')
   project_url = models.URLField(max_length=250)
-  user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='', related_name='author')
+  user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='')
   date_created = models.DateTimeField(auto_now_add=True)
 
   def save_projects(self):
@@ -53,12 +57,11 @@ RATE_CHOICES = [
 (3,'3'),
 (4,'4'),
 (5,'5'),
-(6,'6'),
-(7,'7'),
-(8,'8'),
-(9,'9'),
-(10,'10'),
 ]
+
+
+
+
 
 class Review(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -69,8 +72,12 @@ class Review(models.Model):
   usability = models.PositiveSmallIntegerField(choices = RATE_CHOICES,default = 0)
   content = models.PositiveSmallIntegerField(choices = RATE_CHOICES,default = 0)
 
+  class meta:
+    unique_together = ('user', 'projects')
+
+
   def __str__(self):
-    return self.user.username
+    return f"{self.user}'s {self.design} {self.usability} {self.content} for {self.projects}"
 
 
 

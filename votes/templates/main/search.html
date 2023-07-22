@@ -1,5 +1,6 @@
 <div class="class" style="font-family: 'Jost', sans-serif;">
   {% extends 'main/base.html' %}
+  {% load ratings %}
   {% block content %}
   <div class="container mt-5">
       <div class="row">
@@ -22,14 +23,46 @@
       {% if results %}
       {% for res in results %}
 
-      <div class="row pt-3">
+
+      <div class="row">
+        <div class="col-sm">
+            <div class="view view-cascade overlay">
+                <img class="img-fluid" src="{{res.projects_screenshot.url}}" alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <!-- Title -->
+                <h4 class="card-title"><strong>{{res.title}}</strong></h4>
+                <!-- Subtitle -->
+                <h6 class="font-weight-bold indigo-text py-2">Description</h6>
+                <!-- Text -->
+                <p class="card-text">{{res.description}}
+                </p>
+                <a href="{{res.project_url}}" target="_blank" rel="noopener">
+                    <button class="btn btn-primary">Visit Site</button>
+                </a>
+                <h5 style="padding-left: 120%;" class="text-secondary">By: {{res.user}}</h5>
+            </div>
+        </div>
+    </div>
+
+
+
+
+      <!-- <div class="row pt-3">
           <div class="col-md-8">
               <img src="{{res.projects_screenshot.url}}" alt="oops cant display" height="300px">
           </div>
           <div class="col-md-4">
               <span><strong><a href="{{res.project_url}}">{{res.description}}</a></strong></span>
           </div>
-      </div>
+      </div> -->
       {%endfor%}
       {%endif%}
 
