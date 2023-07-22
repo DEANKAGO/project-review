@@ -1,0 +1,6 @@
+.vscode
+env_reviews/
+__pycache__/
+.env
+media
+.env/
